@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateDaftarMakananMinumanTable extends Migration
+class CreateReportsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,11 @@ class CreateDaftarMakananMinumanTable extends Migration
      */
     public function up()
     {
-        Schema::create('daftar_makanan_minuman', function (Blueprint $table) {
-            $table->integer('id_daftar')->autoIncrement();
-            $table->string('nama');
-            $table->integer('harga')->default(0);
+        Schema::create('reports', function (Blueprint $table) {
+            $table->id();
+            $table->string('nama_petugas');
+            $table->string('kloter_keberangkatan');
+            $table->text('tasks');
             $table->timestamps();
         });
     }
@@ -28,6 +29,6 @@ class CreateDaftarMakananMinumanTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('daftar_makanan_minuman');
+        Schema::dropIfExists('reports');
     }
 }

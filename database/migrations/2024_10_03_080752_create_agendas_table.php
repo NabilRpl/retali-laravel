@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateRestoTable extends Migration
+class CreateAgendasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,12 @@ class CreateRestoTable extends Migration
      */
     public function up()
     {
-        Schema::create('resto', function (Blueprint $table) {
+        // Memastikan tabel agendas belum ada sebelum membuat
+        Schema::create('agendas', function (Blueprint $table) {
             $table->id();
-            $table->string('nama_resto');
-            $table->string('nama_pemilik');
-            $table->text('alamat');
-            $table->string('no_hp');
+            $table->string('kegiatan');
+            $table->text('deskripsi');
+            $table->string('schedule')->nullable()->index();
             $table->timestamps();
         });
     }
@@ -30,6 +30,7 @@ class CreateRestoTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('resto');
+        // Menghapus tabel saat rollback
+        Schema::dropIfExists('agendas'); 
     }
 }
